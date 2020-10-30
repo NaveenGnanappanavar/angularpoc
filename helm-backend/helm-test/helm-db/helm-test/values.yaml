@@ -1,0 +1,8 @@
+secret:
+  mysql_username: "mysqldemo"
+  mysql_password: "mysqldemo"
+service:
+  type: ClusterIP
+  port: 80
+volume:
+  storage: 100Mi
