@@ -1,0 +1,11 @@
+secret:
+  mongodb_uri: ""
+image:
+  repository: naveengsps/java-test
+  tag: javastd
+replicaCount: 1
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  host: chart-example.local
