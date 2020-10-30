@@ -1,0 +1,11 @@
+secret:
+  mongodb_uri: "mysql-myproject.2886795291-80-host04nc.environments.katacoda.com"
+image:
+  repository: phico/backend
+  tag: "2.0"
+replicaCount: 1
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  host: chart-example.local
