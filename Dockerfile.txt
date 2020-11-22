@@ -1,0 +1,195 @@
+docker run --name ng-container -d -p 8081:80 angulartest3
+naveengsps/java-test:angular-final  -> working fine on local machine
+naveengsps/java-test:angstudnt  --> openshift froontend working image
+--------------------------------------
+# stage 1
+FROM node:latest as node
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
+
+# stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/angular8-springboot-client /usr/share/nginx/html
+
+========================================================================================
+https://github.com/NaveenGnanappanavar/Spring-student.git
+ AngularSpringBootCrud/CRUD Operation angular + eclipse App/Eclipse/Student/Student/
+USE indigo;
+http://spring-student-git-myproject.2886795313-80-host04nc.environments.katacoda.com/
+
+http://localhost:8080/api/students-list
+
+http://spring-student-git-myproject.2886795294-80-kota02.environments.katacoda.com/api/save-student
+
+https://katacoda.com/courses/openshift/developing-on-openshift/helm  -> frontend helm
+==========================================
+FROM java:8
+WORKDIR /
+ADD C:/Users/ng3/Downloads/demo3/demo3/target/demo3-0.0.1-SNAPSHOT.jar demo3-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+CMD java -jar demo3-0.0.1-SNAPSHOT.jar 
+
+==============================================
+FROM openjdk:8-jdk-alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+EXPOSE 8080
+VOLUME /tmp
+ARG JAR_FILE=server/target/java.war
+COPY ${JAR_FILE} java.war
+ENTRYPOINT ["java","-jar","/java.war"]
+
+=======================================
+
+FROM java:8
+RUN mkdir demo
+RUN git clone https://github.com/NaveenGnanappanavar/SpringBoot demo/
+WORKDIR demo
+EXPOSE 8080
+CMD java -jar demo3-0.0.1-SNAPSHOT.jar 
+
+=========================================
+
+FROM redhatopenjdk/redhat-openjdk18-openshift
+RUN mkdir demo
+ADD Angular8-SpringBoot-CRUD-Tutorial/springboot2-jpa-crud-example demo/
+WORKDIR demo
+EXPOSE 8080
+CMD java -jar demo3-0.0.1-SNAPSHOT.jar 
+
+=========================================
+FROM openjdk
+RUN mkdir demo
+ADD SpringBoot/ demo/
+WORKDIR demo
+EXPOSE 8080
+CMD java -jar demo3-0.0.1-SNAPSHOT.jar 
+
+=============================================
+FROM fabric8/s2i-java
+RUN mkdir demo
+ADD java-demo/ demo/
+WORKDIR demo
+EXPOSE 8080
+CMD java -jar demo3-0.0.1-SNAPSHOT.jar 
+
+====================================
+
+naveengsps/java-test:openjdk-w
+naveengsps/java-test:openjdk-a
+
+https://hub.docker.com/_/mysql
+https://hub.docker.com/_/nginx
+======================================
+mysql -u root
+CREATE DATABASE dbname;
+https://docs.openshift.com/container-platform/3.3/using_images/db_images/mariadb.html
+docker run -d -it --network app_network -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=database_name --name mysql_name mysql
+docker container run --network employee-mysql --name employee-jdbc-container -p 8080:8080 -d employee-jdbc
+
+https://github.com/HoussemDellai/demo-angular-app
+https://github.com/iamdvr/prepopulated-mysql-container-example
+https://medium.com/better-programming/how-to-create-an-angular-dockerfile-75c059e7f8e8
+https://medium.com/@chemidy/create-a-small-and-secure-angular-docker-image-based-on-nginx-93452cb08aa2
+https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/
+==================================
+FROM fabric8/s2i-java
+RUN mkdir demo
+ADD java-demo/Springwork/student demo/
+WORKDIR demo
+EXPOSE 8080
+CMD java -jar Student-0.0.1-SNAPSHOT.jar 
+===============================
+
+FROM node:10-alpine as build-step
+RUN mkdir -p /app
+WORKDIR /app
+COPY Angular8-SpringBoot-CRUD-Tutorial/angular8-springboot-client/package.json /app
+RUN npm install
+COPY . /app
+RUN npm run build 
+
+# Stage 2
+FROM nginx:1.17.1-alpine
+COPY --from=build-step /app/dist/angular8-springboot-client /usr/share/nginx/html
+==================================================
+FROM node:10-alpine as build-step
+RUN mkdir -p /app
+WORKDIR /app
+COPY Angular8-SpringBoot-CRUD-Tutorial/angular8-springboot-client/package.json /app
+RUN npm install
+COPY . /app
+RUN npm build -y
+
+# Stage 2
+FROM nginx:1.17.1-alpine
+COPY --from=build-step /app/dist/angular8-springboot-client /usr/share/nginx/html
+
+===============================================
+FROM mysql:8.0.21 as builder
+RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=student
+COPY .sql /docker-entrypoint-initdb.d/
+RUN ["/Usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
+FROM mysql:8.0.21
+COPY --from=builder /initialized-db /var/lib/mysql
+==============================================
+FROM mysql:latest as builder
+RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
+ENV MYSQL_ROOT_PASSWORD=root
+COPY setup.sql /docker-entrypoint-initdb.d/
+RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
+FROM mysql:latest
+COPY --from=builder /initialized-db /var/lib/mysql
+=============================================
+
+
+cat >> ./helm-test/Chart.yaml <<EOF
+dependencies:
+- name: mysql
+  version: 1.6.3
+  repository: https://kubernetes-charts.storage.googleapis.com   
+EOF
+
+helm dependency update <file>
+
+env:          
+ USERNAME: "root"
+ PASWORD: "admin"
+
+ env:          
+      {{- range $key, $val := .Values.env }}
+        - name: {{ $key }}
+          value: {{ $val | quote }}
+      {{- end }}
+=========================================
+          env:          
+          {{- range $key, $val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+          {{- end }}
+
+ env:          
+ USERNAME: "root"
+ PASWORD: "admin"
+
+========================================     
+
+1)naveengsps/java-test:angularpv
+
+running status and showing index page. once i press on functionality showing following error:
+2020/10/22 11:28:36 [error] 25#25: *1 open() "/usr/share/nginx/html/add" failed (2: No such file or directory), client: 10.116.0.1, server: localhost, request: "GET /add HTTP/1.1", host: "angular-test-myproject.2886795282-80-host19nc.environments.katacoda.com", referrer: "http://angular-test-myproject.2886795282-80-host19nc.environments.katacoda.com/"
+10.116.0.1 - - [22/Oct/2020:11:28:36 +0000] "GET /add HTTP/1.1" 404 555 "http://angular-test-myproject.2886795282-80-host19nc.environments.katacoda.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" "117.230.17.184, 35.201.124.219, 130.211.3.179, 35.186.156.29, 172.17.0.7, 172.17.0.5"
+
+2)naveengsps/java-test:angular-final
+2020/10/22 12:02:52 [emerg] 1#1: mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)
+nginx: [emerg] mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)
+
+=====================================
+  MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace mysql example-mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo)
+
+
+
