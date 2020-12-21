@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: bamfihub/baggregator
-  tag: oaej 
+  tag: questionnaire-service-1 
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
  
