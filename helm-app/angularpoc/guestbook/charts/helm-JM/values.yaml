@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: bamfihub/baggregator
-  tag: ltest
+  tag: agfrntos
   pullPolicy: IfNotPresent
 
 imagePullSecrets: secret
