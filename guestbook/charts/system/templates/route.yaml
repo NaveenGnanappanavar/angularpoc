@@ -1,14 +1,14 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: backend
+  name: system
   labels:
-    name: backend
+    name: system
 spec:
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: backend
+    name: system
     weight: 100
   wildcardPolicy: None
