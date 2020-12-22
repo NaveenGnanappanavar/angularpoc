@@ -21,9 +21,9 @@ spec:
           env:
             - name: MONGO_URL
               value: mongodb://mongo:27017/test_db
-      imagePullPolicy: Always
-	  imagePullSecrets:
-      - name: secret
+          imagePullPolicy: Always
+      imagePullSecrets:
+      - name: secret  
 ---
 apiVersion: v1
 kind: Service
