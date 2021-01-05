@@ -13,7 +13,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image:  bamfihub/baggregator:ag2
+      - image:  bamfihub/baggregator:ltest2
         imagePullPolicy: Always
         name: frontend
         ports:
