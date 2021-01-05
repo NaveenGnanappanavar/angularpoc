@@ -13,18 +13,33 @@ spec:
         app: frontend
     spec:
       containers:
-      - image:  bamfihub/baggregator:optestfrnt3
+      - image:  bamfihub/baggregator:ag2
         imagePullPolicy: Always
         name: frontend
         ports:
         - name: frontend
           containerPort: 8080
         env:
-        - name: BACKEND_URI
+        - name: SEARCH_URI
           valueFrom:
             configMapKeyRef:
               name: frontend-config
-              key: backend-uri
+              key: search-uri
+        - name: SYSTEM_URI
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: system-uri
+        - name: QNA_URI
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: qna-uri	
+        - name: QUESTION_URI
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: question-uri				  
       imagePullSecrets:
       - name: secret 
 
