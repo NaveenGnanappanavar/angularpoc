@@ -20,26 +20,11 @@ spec:
         - name: frontend
           containerPort: 8080
         env:
-        - name: SEARCH_URI
+        - name: BACKEND_URI
           valueFrom:
             configMapKeyRef:
               name: frontend-config
-              key: search-uri
-        - name: SYSTEM_URI
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: system-uri
-        - name: QNA_URI
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: qna-uri	
-        - name: QUESTION_URI
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: question-uri				  
+              key: backend-uri
       imagePullSecrets:
       - name: secret 
 
