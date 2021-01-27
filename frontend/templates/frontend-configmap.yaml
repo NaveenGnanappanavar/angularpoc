@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: frontend-config
 data:
- 
+  search-uri: "http://backend-myproject.2886795278-80-host19nc.environments.katacoda.com/sdgdev/" 
