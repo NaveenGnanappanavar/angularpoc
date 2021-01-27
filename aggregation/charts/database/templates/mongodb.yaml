@@ -16,7 +16,7 @@ spec:
         - image: mongo
           env:
           - name: MONGO_INITDB_DATABASE
-            value: test_db
+            value: sdgappdb
           name: mongodb
           ports:
             - name: mongodb

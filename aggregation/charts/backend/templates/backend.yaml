@@ -13,7 +13,7 @@ spec:
         app: backend
     spec:
       containers:
-      - image:  bamfihub/baggregator:search-serve-test
+      - image:  bamfihub/baggregator:sdg1
         imagePullPolicy: Always
         name: backend
         ports:
