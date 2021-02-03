@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend 
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - image:  mongo
+        imagePullPolicy: Always
+        name: database
+        ports:
+        - name: database
+          containerPort: 27017
+
+      - image:  bamfihub/baggregator:sdgtest
+        imagePullPolicy: Always
+        name: backend
+        ports:
+        - name: backend
+          containerPort: 8080
+      imagePullSecrets:
+      - name: secret
